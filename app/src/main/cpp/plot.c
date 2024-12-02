@@ -28,7 +28,7 @@ void plot_v2(float* array, int array_size, Vector2 position, Vector2 size) {
     float max = max_array_abs(array, array_size);
     Vector2 start_pos;
     Vector2 end_pos;
-    float radius = size.x / array_size * 2;
+    float radius = 3;
 
 
     for (int i = 0; i < array_size-1; i++) {

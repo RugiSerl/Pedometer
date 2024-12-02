@@ -17,6 +17,7 @@ pedometer_t* load_pedometer() {
     pedometer->gyroscope_buffer = load_buffer(BUFFER_SIZE);
     pedometer->accelerometer_buffer = load_buffer(BUFFER_SIZE);
     pedometer->gyroscope_data = malloc(sizeof(float) * BUFFER_SIZE);
+    pedometer->gyroscope_filtered_data = malloc(sizeof(float) * BUFFER_SIZE);
     pedometer->accelerometer_data = malloc(sizeof(float) * BUFFER_SIZE);
     pedometer->fundamental_buffer = load_buffer(BUFFER_SIZE);
     pedometer->fundamental_data = malloc(sizeof(float) * BUFFER_SIZE);
@@ -33,6 +34,7 @@ void unload_pedometer(pedometer_t *pedometer) {
     unload_buffer(pedometer->accelerometer_buffer);
     unload_buffer(pedometer->fundamental_buffer);
     free(pedometer->gyroscope_data);
+    free(pedometer->gyroscope_filtered_data);
     free(pedometer->accelerometer_data);
     free(pedometer->fundamental_data);
 
@@ -66,19 +68,16 @@ void update_pedometer(pedometer_t *pedometer) {
 
     // spectral plot
     float *spectral_view = spectral_decomposition((time_domain_data_t) {pedometer->gyroscope_data, pedometer->gyroscope_buffer->size});
-    plot_v2(spectral_view, pedometer->gyroscope_buffer->size/2, (Vector2) {200, 1400}, (Vector2) {700, 500});
+    plot_v2(spectral_view, pedometer->gyroscope_buffer->size/8, (Vector2) {200, 1400}, (Vector2) {700, 500});
 
     // fundamental plot
     add_data(pedometer->fundamental_buffer, (float ) fundamental_frequency((time_domain_data_t) {pedometer->gyroscope_data, pedometer->gyroscope_buffer->size}));
     plot_v2(pedometer->fundamental_data, pedometer->gyroscope_buffer->size/2, (Vector2) {200, 2000}, (Vector2) {700, 500});
 
 
-
     free(spectral_view);
+}
 
-
-
-
-
+void handle_graphics(pedometer_t *pedometer) {
 
 }

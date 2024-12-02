@@ -14,6 +14,7 @@ typedef struct pedometer {
     buffer_t *fundamental_buffer;
 
     float *gyroscope_data;
+    float *gyroscope_filtered_data;
     float *accelerometer_data;
     float *fundamental_data;
 
@@ -22,6 +23,7 @@ typedef struct pedometer {
 pedometer_t* load_pedometer();
 void unload_pedometer(pedometer_t*);
 void update_pedometer(pedometer_t*);
+void handle_graphics(pedometer_t*);
 
 
 #endif //TIPE_PEDOMETER_H
