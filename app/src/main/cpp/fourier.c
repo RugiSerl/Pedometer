@@ -73,9 +73,9 @@ frequency_domain_data_t* fast_fourier_transform(time_domain_data_t data) {
 
 // Get Spectral decomposition by calculating the abs of the coefficients.
 // Be careful, the size of the array is n/2, because we don't need the second half of data which is just the same data mirrored.
-float* spectral_decomposition(time_domain_data_t signal) {
+void spectral_decomposition(time_domain_data_t signal, float* res) {
     frequency_domain_data_t *coeffs = fast_fourier_transform(signal);
-    float *res = malloc(sizeof(float) * coeffs->n / 2);
+
 
     for (int i = 0; i < coeffs->n/2; i++) {
         res[i] = cabsf(coeffs->coefficients[i]);
@@ -84,18 +84,20 @@ float* spectral_decomposition(time_domain_data_t signal) {
     free(coeffs->coefficients);
     free(coeffs);
 
-    return res;
-
 }
 
 int fundamental_frequency(time_domain_data_t signal) {
-    float *frequencies = spectral_decomposition(signal);
+    float *frequencies = malloc(signal.n / 2);
+    spectral_decomposition(signal, frequencies);
     float max = max_array(frequencies, signal.n / 2);
     for (int i = 0; i<signal.n/2; i++) {
-        if (frequencies[i]>max*0.5f) return i;
+        if (frequencies[i] > max * 0.5f) {
+            free(frequencies);
+            return i;
+        }
     }
-
-
-
+    free(frequencies);
 
 }
+
+

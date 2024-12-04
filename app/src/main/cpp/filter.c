@@ -24,9 +24,8 @@ void low_pass_filter(time_domain_data_t data) {
     free(res);
 }
 
-void gaussian_filter(time_domain_data_t data) {
+void gaussian_low_pass_filter(time_domain_data_t data, int kernel_radius) {
     float *res = malloc(sizeof(float) * data.n);
-    int kernel_radius = 20;
     float ker_radius_f = (float) kernel_radius;
     for (int i = 0; i<data.n-1; i++) {
         res[i] = 0;
@@ -51,4 +50,11 @@ void gaussian_filter(time_domain_data_t data) {
     }
     free(res);
 }
+
+
+// subtract low frequencies
+void gaussian_high_pass(time_domain_data_t data, int kernel_radius) {
+
+}
+
 

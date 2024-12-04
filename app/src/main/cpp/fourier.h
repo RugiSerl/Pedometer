@@ -19,7 +19,7 @@ typedef struct frequency_domain_data {
 
 frequency_domain_data_t* discrete_fourier_transform(time_domain_data_t);
 frequency_domain_data_t * fast_fourier_transform(time_domain_data_t);
-float* spectral_decomposition(time_domain_data_t);
+void spectral_decomposition(time_domain_data_t, float*);
 int fundamental_frequency(time_domain_data_t);
 
 

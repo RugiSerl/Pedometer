@@ -15,14 +15,17 @@ typedef struct pedometer {
 
     float *gyroscope_data;
     float *gyroscope_filtered_data;
+    float *accelerometer_filtered_data;
     float *accelerometer_data;
     float *fundamental_data;
+    float *spectral_data;
 
 } pedometer_t;
 
 pedometer_t* load_pedometer();
 void unload_pedometer(pedometer_t*);
 void update_pedometer(pedometer_t*);
+void update_variables(pedometer_t*);
 void handle_graphics(pedometer_t*);
 
 

@@ -23,3 +23,9 @@ float max_array(float* array, int n) {
     }
     return m;
 }
+
+void copy_array_content(const float *src, float *dest, int n) {
+    for (int i = 0; i < n; i++) {
+        dest[i] = src[i];
+    }
+}

@@ -14,7 +14,7 @@ int main(void)
     InitWindow(0, 0, "raylib [core] example - basic window");
     SetTargetFPS(-1); // unlimited fps (in theory)
     //--------------------------------------------------------------------------------------
-
+    KeepScreenOn(true);
     pedometer_t *pedometer = load_pedometer();
 
     char text[20] = "            ";
@@ -29,7 +29,6 @@ int main(void)
 
         ClearBackground(BLACK);
         sprintf(text, "Step count :%d", pedometer->step_counter);
-
         DrawCircleV((Vector2) {100+50* GetGyroscopeY(), 100+50* GetGyroscopeX()}, 20, BLUE);
 
         update_pedometer(pedometer);
