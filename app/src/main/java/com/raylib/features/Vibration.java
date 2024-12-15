@@ -33,9 +33,12 @@ public class Vibration {
 
     public Vibration(Context context) {
         vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+
+
     }
 
     public void vibrate(float seconds) {
+
         if (vibrator != null && vibrator.hasVibrator()) {
             vibrator.vibrate((long)(seconds * 1000));
         }

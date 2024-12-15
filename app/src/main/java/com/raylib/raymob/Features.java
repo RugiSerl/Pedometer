@@ -25,6 +25,8 @@
 package com.raylib.raymob;
 
 import android.content.Context;
+
+import com.mpi.tipe_podometre.BuildConfig;
 import com.raylib.features.*;
 import java.util.Optional;
 
@@ -40,16 +42,18 @@ public class Features {
     /* CONSTRUCTOR */
 
     public Features(Context context) {
-        vibrator = BuildConfig.FEATURE_VIBRATION ? Optional.of(new Vibration(context)) : Optional.empty();
+        vibrator = Optional.of(new Vibration(context));
         sensor = BuildConfig.FEATURE_ACCELEROMETER ? Optional.of(new Sensor(context)) : Optional.empty();
         softKeyboard = BuildConfig.FEATURE_SOFT_KEYBOARD ? Optional.of(new SoftKeyboard(context)) : Optional.empty();
         display = BuildConfig.FEATURE_DISPLAY ? Optional.of(new DisplayManager(context)) : Optional.empty();
+
     }
 
     /* VIBRATION */
 
     public void vibrate(float seconds) {
         vibrator.ifPresent(v -> v.vibrate(seconds));
+
     }
 
     /* SENSOR */
@@ -75,6 +79,20 @@ public class Features {
         return sensor.map(Sensor::getAccelerometerZ).orElse(0f);
     }
 
+    /* ACCELEROMETER LINEAR */
+    public float getAccelerometerLinearX() {
+        return sensor.map(Sensor::getAccelerometerLinearX).orElse(0f);
+    }
+
+    public float getAccelerometerLinearY() {
+        return sensor.map(Sensor::getAccelerometerLinearY).orElse(0f);
+    }
+
+    public float getAccelerometerLinearZ() {
+        return sensor.map(Sensor::getAccelerometerLinearZ).orElse(0f);
+    }
+
+
     /* GYROSCOPE */
     public float getGyroscopeX() {
         return sensor.map(Sensor::getGyroscopeX).orElse(0f);
@@ -86,6 +104,19 @@ public class Features {
 
     public float getGyroscopeZ() {
         return sensor.map(Sensor::getGyroscopeZ).orElse(0f);
+    }
+
+    /* MAGNETIC_FIELD */
+    public float getMagnetometerX() {
+        return sensor.map(Sensor::getMagnetometerX).orElse(0f);
+    }
+
+    public float getMagnetometerY() {
+        return sensor.map(Sensor::getMagnetometerY).orElse(0f);
+    }
+
+    public float getMagnetometerZ() {
+        return sensor.map(Sensor::getMagnetometerZ).orElse(0f);
     }
 
     /* SOFT KEYBOARD */

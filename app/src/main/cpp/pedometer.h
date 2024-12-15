@@ -9,6 +9,8 @@
 
 typedef struct pedometer {
     int step_counter;
+    Sound step_sound;
+
     buffer_t *gyroscope_buffer;
     buffer_t *accelerometer_buffer;
     buffer_t *fundamental_buffer;

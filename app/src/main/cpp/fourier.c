@@ -97,7 +97,7 @@ int fundamental_frequency(time_domain_data_t signal) {
         }
     }
     free(frequencies);
-
+    return 1;
 }
 
 

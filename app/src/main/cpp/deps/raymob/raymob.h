@@ -155,6 +155,36 @@ RMBAPI float GetAccelerometerY(void);
  */
 RMBAPI float GetAccelerometerZ(void);
 
+
+/**
+ * @brief Returns the current accelerometer axis vector.
+ *
+ * @return Current accelerometer axis vector.
+ */
+RMBAPI Vector3 GetAccelerometerLinearAxis(void);
+
+/**
+ * @brief Returns the current value of the X-axis accelerometer.
+ *
+ * @return Current value of the X-axis accelerometer.
+ */
+RMBAPI float GetAccelerometerLinearX(void);
+
+/**
+ * @brief Returns the current value of the Y-axis accelerometer.
+ *
+ * @return Current value of the Y-axis accelerometer.
+ */
+RMBAPI float GetAccelerometerLinearY(void);
+
+/**
+ * @brief Returns the current value of the Z-axis accelerometer.
+ *
+ * @return Current value of the Z-axis accelerometer.
+ */
+RMBAPI float GetAccelerometerLinearZ(void);
+
+
 /**
  * @brief Returns the current gyroscope axis vector.
  *
@@ -182,6 +212,35 @@ RMBAPI float GetGyroscopeY(void);
  * @return Current value of the Z-axis gyroscope.
  */
 RMBAPI float GetGyroscopeZ(void);
+
+
+/**
+ * @brief Returns the current magnetometer axis vector.
+ *
+ * @return Current magnetometer axis vector.
+ */
+RMBAPI Vector3 GetMagnetometerAxis(void);
+
+/**
+ * @brief Returns the current value of the X-axis magnetometer.
+ *
+ * @return Current value of the X-axis magnetometer.
+ */
+RMBAPI float GetMagnetometerX(void);
+
+/**
+ * @brief Returns the current value of the Y-axis magnetometer.
+ *
+ * @return Current value of the Y-axis magnetometer.
+ */
+RMBAPI float GetMagnetometerY(void);
+
+/**
+ * @brief Returns the current value of the Z-axis magnetometer.
+ *
+ * @return Current value of the Z-axis magnetometer.
+ */
+RMBAPI float GetMagnetometerZ(void);
 
 /**
  * @brief Displays the soft keyboard on the screen.

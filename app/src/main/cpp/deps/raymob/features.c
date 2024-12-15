@@ -153,6 +153,90 @@ float GetAccelerometerZ(void)
     return 0;
 }
 
+/* ACCELEROMETER LINEAR*/
+
+Vector3 GetAccelerometerLinearAxis(void)
+{
+    jobject featuresInstance = GetFeaturesInstance();
+
+    if (featuresInstance != NULL)
+    {
+        JNIEnv* env = AttachCurrentThread();
+
+        jclass featuresClass = (*env)->GetObjectClass(env, featuresInstance);
+
+        jmethodID methodX = (*env)->GetMethodID(env, featuresClass, "getAccelerometerLinearX", "()F");
+        jmethodID methodY = (*env)->GetMethodID(env, featuresClass, "getAccelerometerLinearY", "()F");
+        jmethodID methodZ = (*env)->GetMethodID(env, featuresClass, "getAccelerometerLinearZ", "()F");
+
+        Vector3 value = {
+                (*env)->CallFloatMethod(env, featuresInstance, methodX),
+                (*env)->CallFloatMethod(env, featuresInstance, methodY),
+                (*env)->CallFloatMethod(env, featuresInstance, methodZ)
+        };
+
+        DetachCurrentThread();
+
+        return value;
+    }
+
+    return (Vector3) {0};
+}
+
+float GetAccelerometerLinearX(void)
+{
+    jobject featuresInstance = GetFeaturesInstance();
+
+    if (featuresInstance != NULL)
+    {
+        JNIEnv* env = AttachCurrentThread();
+        jclass featuresClass = (*env)->GetObjectClass(env, featuresInstance);
+        jmethodID method = (*env)->GetMethodID(env, featuresClass, "getAccelerometerLinearX", "()F");
+        float value = (*env)->CallFloatMethod(env, featuresInstance, method);
+        DetachCurrentThread();
+
+        return value;
+    }
+
+    return 0;
+}
+
+float GetAccelerometerLinearY(void)
+{
+    jobject featuresInstance = GetFeaturesInstance();
+
+    if (featuresInstance != NULL)
+    {
+        JNIEnv* env = AttachCurrentThread();
+        jclass featuresClass = (*env)->GetObjectClass(env, featuresInstance);
+        jmethodID method = (*env)->GetMethodID(env, featuresClass, "getAccelerometerLinearY", "()F");
+        float value = (*env)->CallFloatMethod(env, featuresInstance, method);
+        DetachCurrentThread();
+
+        return value;
+    }
+
+    return 0;
+}
+
+float GetAccelerometerLinearZ(void)
+{
+    jobject featuresInstance = GetFeaturesInstance();
+
+    if (featuresInstance != NULL)
+    {
+        JNIEnv* env = AttachCurrentThread();
+        jclass featuresClass = (*env)->GetObjectClass(env, featuresInstance);
+        jmethodID method = (*env)->GetMethodID(env, featuresClass, "getAccelerometerLinearZ", "()F");
+        float value = (*env)->CallFloatMethod(env, featuresInstance, method);
+        DetachCurrentThread();
+
+        return value;
+    }
+
+    return 0;
+}
+
 /* GYROSCOPE */
 
 Vector3 GetGyroscopeAxis(void)
@@ -236,6 +320,92 @@ float GetGyroscopeZ(void)
 
     return 0;
 }
+
+
+/* MAGNETOMETER */
+
+Vector3 GetMagnetometerAxis(void)
+{
+    jobject featuresInstance = GetFeaturesInstance();
+
+    if (featuresInstance != NULL)
+    {
+        JNIEnv* env = AttachCurrentThread();
+
+        jclass featuresClass = (*env)->GetObjectClass(env, featuresInstance);
+
+        jmethodID methodX = (*env)->GetMethodID(env, featuresClass, "getMagnetometerX", "()F");
+        jmethodID methodY = (*env)->GetMethodID(env, featuresClass, "getMagnetometerY", "()F");
+        jmethodID methodZ = (*env)->GetMethodID(env, featuresClass, "getMagnetometerZ", "()F");
+
+        Vector3 value = {
+                (*env)->CallFloatMethod(env, featuresInstance, methodX),
+                (*env)->CallFloatMethod(env, featuresInstance, methodY),
+                (*env)->CallFloatMethod(env, featuresInstance, methodZ)
+        };
+
+        DetachCurrentThread();
+
+        return value;
+    }
+
+    return (Vector3) {0};
+}
+
+float GetMagnetometerX(void)
+{
+    jobject featuresInstance = GetFeaturesInstance();
+
+    if (featuresInstance != NULL)
+    {
+        JNIEnv* env = AttachCurrentThread();
+        jclass featuresClass = (*env)->GetObjectClass(env, featuresInstance);
+        jmethodID method = (*env)->GetMethodID(env, featuresClass, "getMagnetometerX", "()F");
+        float value = (*env)->CallFloatMethod(env, featuresInstance, method);
+        DetachCurrentThread();
+
+        return value;
+    }
+
+    return 0;
+}
+
+float GetMagnetometerY(void)
+{
+    jobject featuresInstance = GetFeaturesInstance();
+
+    if (featuresInstance != NULL)
+    {
+        JNIEnv* env = AttachCurrentThread();
+        jclass featuresClass = (*env)->GetObjectClass(env, featuresInstance);
+        jmethodID method = (*env)->GetMethodID(env, featuresClass, "getMagnetometerY", "()F");
+        float value = (*env)->CallFloatMethod(env, featuresInstance, method);
+        DetachCurrentThread();
+
+        return value;
+    }
+
+    return 0;
+}
+
+float GetMagnetometerZ(void)
+{
+    jobject featuresInstance = GetFeaturesInstance();
+
+    if (featuresInstance != NULL)
+    {
+        JNIEnv* env = AttachCurrentThread();
+        jclass featuresClass = (*env)->GetObjectClass(env, featuresInstance);
+        jmethodID method = (*env)->GetMethodID(env, featuresClass, "getMagnetometerZ", "()F");
+        float value = (*env)->CallFloatMethod(env, featuresInstance, method);
+        DetachCurrentThread();
+
+        return value;
+    }
+
+    return 0;
+}
+
 
 
 

@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.INTERNET"
         android:required="${FEATURE_INTERNET}" />
 
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
+
     <uses-permission android:name="android.permission.VIBRATE"
         android:required="${FEATURE_VIBRATION}" />
 

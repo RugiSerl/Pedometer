@@ -32,23 +32,31 @@ public class Sensor implements android.hardware.SensorEventListener {
 
     private SensorManager sensorManager;
     private android.hardware.Sensor accelerometer;
+    private android.hardware.Sensor accelerometerLinear;
     private android.hardware.Sensor gyroscope;
+    private android.hardware.Sensor magnetometer;
     private float[] accelerometerValues = new float[3]; // To store the axis values (x, y, z)
+    private float[] accelerometerLinearValues = new float[3]; // To store the axis values (x, y, z)
     private float[] gyroscopeValues = new float[3]; // To store the axis values (x, y, z)
+    private float[] magnetometerValues = new float[3]; // To store the axis values (x, y, z)
 
     public Sensor(Context context) {
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager != null) {
             accelerometer = sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_ACCELEROMETER);
+            accelerometerLinear = sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_LINEAR_ACCELERATION);
             gyroscope = sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_GYROSCOPE);
+            magnetometer = sensorManager.getDefaultSensor(android.hardware.Sensor.TYPE_MAGNETIC_FIELD);
         }
     }
 
     // Method to start listening to the accelerometer
     public void startListening() {
         if (accelerometer != null) {
-            sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
-            sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_GAME);
+            sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_FASTEST);
+            sensorManager.registerListener(this, accelerometerLinear, SensorManager.SENSOR_DELAY_FASTEST);
+            sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_FASTEST);
+            sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_FASTEST);
         }
     }
 
@@ -73,6 +81,21 @@ public class Sensor implements android.hardware.SensorEventListener {
     }
 
     // Method to get the value of the X-axis
+    public float getAccelerometerLinearX() {
+        return accelerometerLinearValues[0];
+    }
+
+    // Method to get the value of the Y-axis
+    public float getAccelerometerLinearY() {
+        return accelerometerLinearValues[1];
+    }
+
+    // Method to get the value of the Z-axis
+    public float getAccelerometerLinearZ() {
+        return accelerometerLinearValues[2];
+    }
+
+    // Method to get the value of the X-axis
     public float getGyroscopeX() {
         return gyroscopeValues[0];
     }
@@ -84,6 +107,19 @@ public class Sensor implements android.hardware.SensorEventListener {
 
     // Method to get the value of the Z-axis
     public float getGyroscopeZ() {
+        return gyroscopeValues[2];
+    }// Method to get the value of the X-axis
+    public float getMagnetometerX() {
+        return gyroscopeValues[0];
+    }
+
+    // Method to get the value of the Y-axis
+    public float getMagnetometerY() {
+        return gyroscopeValues[1];
+    }
+
+    // Method to get the value of the Z-axis
+    public float getMagnetometerZ() {
         return gyroscopeValues[2];
     }
 
@@ -97,6 +133,14 @@ public class Sensor implements android.hardware.SensorEventListener {
             gyroscopeValues[0] = event.values[0]; // X-axis
             gyroscopeValues[1] = event.values[1]; // Y-axis
             gyroscopeValues[2] = event.values[2]; // Z-axis
+        } else if (event.sensor.getType() == android.hardware.Sensor.TYPE_MAGNETIC_FIELD) {
+            magnetometerValues[0] = event.values[0]; // X-axis
+            magnetometerValues[1] = event.values[1]; // Y-axis
+            magnetometerValues[2] = event.values[2]; // Z-axis
+        } else if (event.sensor.getType() == android.hardware.Sensor.TYPE_LINEAR_ACCELERATION) {
+            accelerometerLinearValues[0] = event.values[0]; // X-axis
+            accelerometerLinearValues[1] = event.values[1]; // Y-axis
+            accelerometerLinearValues[2] = event.values[2]; // Z-axis
         }
     }
 
