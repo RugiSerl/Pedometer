@@ -9,7 +9,7 @@
 
 
 void plot(float*, int, Vector2, Vector2);
-void plot_v2(float*, int, Vector2, Vector2);
+void plot_v2(Vector2 position, Vector2 size, int array_size, int array_amount, float** arrays);
 
 
 

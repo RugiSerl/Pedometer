@@ -41,10 +41,32 @@ float max_array_range(float* array, int n, int i, int j) {
     return m;
 }
 
+float maxf(float x, float y) {
+    return (x > y) ? x : y;
+}
+
+float get_max_arrays(int array_size, int array_count, float** arrays) {
+    // Get max from all arrays
+    float maximum = max_array_abs(arrays[0], array_size);
+    for (int i = 1; i < array_count; i++) {
+        maximum = maxf(maximum, max_array_abs(arrays[i], array_size));
+    }
+
+    return maximum;
+}
+
 float* malloc_empty_array(int n) {
     float *t = malloc(sizeof(float) * n);
     for (int i = 0; i < n; i++) {
         t[i] = 0;
+    }
+    return t;
+}
+
+float* malloc_filled_array(int n, float value) {
+    float *t = malloc(sizeof(float) * n);
+    for (int i = 0; i < n; i++) {
+        t[i] = value;
     }
     return t;
 }

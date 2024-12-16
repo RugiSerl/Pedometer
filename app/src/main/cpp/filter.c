@@ -21,15 +21,12 @@ void low_pass_filter(time_domain_data_t data) {
 }
 
 void gaussian_low_pass_filter(time_domain_data_t data, int kernel_radius) {
-    float *res = malloc(sizeof(float) * data.n);
+    float *res = malloc_empty_array(data.n);
     float ker_radius_f = (float) kernel_radius;
-    for (int i = 0; i<data.n-1; i++) {
-        res[i] = 0;
-    }
 
     float coef_sum;
     float coef;
-    for (int i = kernel_radius; i<data.n-1-kernel_radius; i++) {
+    for (int i = 0; i<data.n-1; i++) {
         coef_sum = 0;
         for (int j = clamp(i-kernel_radius, 0, data.n); j < clamp(i+kernel_radius, 0, data.n); j++) {
             float x = (float ) (i-j);

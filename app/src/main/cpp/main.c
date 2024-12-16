@@ -3,7 +3,6 @@
 
 
 
-
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
@@ -19,7 +18,8 @@ int main(void)
 
     pedometer_t *pedometer = load_pedometer();
 
-    char text[20] = "            ";
+    char text_1[100] = "                                      ";
+    char text_2[100] = "                                      ";
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -30,13 +30,15 @@ int main(void)
         BeginDrawing();
 
         ClearBackground(BLACK);
-        sprintf(text, "Step count :%d", pedometer->step_counter);
+        sprintf(text_1, "Accelerometer step counter :%d", pedometer->step_counter_1);
+        sprintf(text_2, "Gyroscope step counter :%d", pedometer->step_counter_2);
         DrawCircleV((Vector2) {100+50* GetAccelerometerLinearX(), 100+50* GetAccelerometerLinearY()}, 20, BLUE);
 
         update_pedometer(pedometer);
 
 
-        DrawText(text, 0, 20, 20, LIGHTGRAY);
+        DrawText(text_1, 50, 100, 50, LIGHTGRAY);
+        DrawText(text_2, 50, 200, 50, LIGHTGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
