@@ -76,7 +76,7 @@ void count_step_gyroscope(pedometer_t* pedometer) {
 
 void count_step_accelerometer(pedometer_t* pedometer) {
     gate((time_domain_data_t) {pedometer->accelerometer_filtered_data,
-                               pedometer->accelerometer_buffer->size}, 0.1f);
+                               pedometer->accelerometer_buffer->size}, 0.7f);
 
     bool step = dilate((time_domain_data_t) {pedometer->accelerometer_filtered_data,
                                              pedometer->accelerometer_buffer->size}, 40);

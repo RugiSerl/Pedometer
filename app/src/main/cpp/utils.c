@@ -33,8 +33,8 @@ float max_array(float* array, int n) {
 }
 
 float max_array_range(float* array, int n, int i, int j) {
-    float m = 0;
     assert(i>=0 && j<n);
+    float m = array[i];
     for (int k = i; k < j; k++) {
         if (array[k]>m) m = array[k];
     }
@@ -43,6 +43,14 @@ float max_array_range(float* array, int n, int i, int j) {
 
 float maxf(float x, float y) {
     return (x > y) ? x : y;
+}
+
+int maxi(int x, int y) {
+    return (x > y) ? x : y;
+}
+
+int mini(int x, int y) {
+    return (x < y) ? x : y;
 }
 
 float get_max_arrays(int array_size, int array_count, float** arrays) {

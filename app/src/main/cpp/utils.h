@@ -14,6 +14,8 @@ void copy_array_content(float*, float*, int n);
 float* malloc_empty_array(int n);
 float* malloc_filled_array(int n, float value);
 float maxf(float x, float y);
+int maxi(int x, int y);
+int mini(int x, int y);
 float get_max_arrays(int array_size, int array_count, float** arrays);
 float absf(float );
 

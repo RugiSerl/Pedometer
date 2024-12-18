@@ -80,9 +80,9 @@ void gate(time_domain_data_t data, float level) {
 bool dilate(time_domain_data_t data, int kernel_radius) {
     float *res = malloc(sizeof(float) * data.n);
     float ker_radius_f = (float) kernel_radius;
-    for (int i = 0; i<data.n-1; i++) {
-        res[i] = max_array_range(data.samples, data.n, clamp(i - kernel_radius, 0, data.n - 1),
-                                 clamp(i + kernel_radius, 0, data.n - 1));
+    for (int i = 0; i<data.n; i++) {
+        res[i] = max_array_range(data.samples, data.n, maxi(i - kernel_radius, 0),
+                                 mini(i + kernel_radius, data.n - 1));
     }
     bool reached = (res[kernel_radius] == data.samples[kernel_radius] && res[kernel_radius]!=0);
     copy_array_content(res, data.samples, data.n);
